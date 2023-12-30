@@ -1,0 +1,15 @@
+doctype html
+html 
+    script(defer type="text/javascript" src="/js/helper.js")
+    include helper.pug
+    head
+    body
+        .navbar 
+            h2.mainText Post
+        include helper.pug
+        .saleForm
+            form(action='/post' method='post')
+                textarea#postform(name='post' type='text' placeholder="How are we feeling today? :)" rows='4' cols='50' minlength='1' maxlength='200')
+                .button-container
+                    button(type='submit') Post
+                        //- onclick='post()'

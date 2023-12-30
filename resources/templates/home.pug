@@ -1,0 +1,51 @@
+doctype html
+html 
+    include helper.pug
+    head
+        script(defer type="text/javascript" src="/js/helper.js")
+    body
+        .navbar 
+            h2.mainText Groin Page
+            form(action='/post' method='get')
+                button(type='submit').post-btn Post +
+            .org-container
+                a
+                    button(type='button' onclick="change_order(" + true + ")") Recent
+                //- (href="/")
+                a 
+                    button(type='button' onclick="change_order(" + false + ")") Likes 
+            p
+        include helper.pug
+        - var counter = 10
+        each post in post_list
+
+            .post
+                if counter % 10 == 0
+                    h3(style="margin-top: 16%;")= post.username
+                else 
+                    h3(style="margin-top: 2%;")= post.username
+                p(id = ('post-data' + post.post_id))= post.post
+                .like-container
+                    button(type='button' onclick="like_post(" + post.post_id +")").like-btn Like
+                    label(id = "like-btn" + post.post_id)= post.likes
+                if current_userID == post.user_id 
+                    .post-container
+                        a.edit-post(href='/edit_post' onclick="edit_post(" + post.post_id + ")")
+                            button( type='button' ) Edit
+                        a.delete-post(href='/' onclick="delete_post(" + post.post_id + ")")
+                            button(type='button')#delete-post Delete
+                p.hide= counter++
+        .pagination
+            if current_page != 1
+                a(href='/' onclick="page_number(" + (current_page-1) + ")") &laquo;
+            - var i = 1;
+            while i <= pages
+                if i == current_page
+                    a(href='/' onclick="page_number(" + i + ")").active= i 
+                else 
+                    a(href='/' onclick="page_number(" + i + ")")= i 
+                p.hide= i++
+            if current_page != pages
+                a(href='/' onclick="page_number(" + (current_page+1) + ")") &raquo;
+
+

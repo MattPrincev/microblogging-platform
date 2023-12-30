@@ -1,0 +1,13 @@
+doctype html
+html 
+    head
+    body
+        .navbar 
+            h2#profileText=username    
+            div.bio-container 
+                p#gender=gender
+                p=bio 
+            div.button-container
+                form(action='/edit-profile' method='get')
+                    button#profile-btn(type='submit') Edit Profile
+        include helper.pug

@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        link(rel="stylesheet" type="text/css" href="/css/main.css")
+        title register
+form(action='/register' method='post')
+    .container
+        h1 Register to become a groinlet!
+        p Please fill in this form to create an account.
+        hr
+        label(for='email')
+            b Email
+        //- input#email(type='email' name='email')
+        input#email(type='email' placeholder='Enter Email' name='email' required='')
+        label(for='user')
+            b Username
+        input#pass(type='text' placeholder='Enter Username' name='user' required='' minlength='3' maxlength='14')
+        label(for='pass' minlength='3' maxlength='20')
+            b Password
+        input#pass(type='password' placeholder='Enter Password' name='pass' required='' minlength='3' maxlength='30')
+        label(for='pass-repeat')
+            b Repeat Password
+        input#pass-repeat(type='password' placeholder='Repeat Password' name='repeat' required='' minlength='3' maxlength='30')
+        hr
+        button.registerbtn(type='submit') Register
+    .container.signin
+        p
+        | Already have an account? 
+        a(href='/login') Sign in
+        | .
